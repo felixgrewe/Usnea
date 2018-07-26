@@ -1,5 +1,5 @@
 # Usnea
-##Popgen of Usneas in Antarctica  
+## Popgen of Usneas in Antarctica  
 ================================
 
 [RAxML_code](./RAxML.sh)  
