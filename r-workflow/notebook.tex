@@ -1,0 +1,523 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{RADseq Usnea}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Copying data files}
+        \PY{k+kp}{system}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{cp /home/fgrewe/Usnea/Usnea\PYZus{}RAD1234/6\PYZhy{}pyrad7/outfiles/c90d6m4p3.vcf .\PYZdq{}}\PY{p}{)}
+        \PY{k+kp}{system}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{cp /home/fgrewe/Usnea/Usnea\PYZus{}RAD1234/9\PYZhy{}DAPC/Usnea.pop .\PYZdq{}}\PY{p}{)}
+        \PY{k+kp}{system}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZti{}/bin/vcftools \PYZhy{}\PYZhy{}vcf c90d6m4p3.vcf \PYZhy{}\PYZhy{}max\PYZhy{}missing 0.5 \PYZhy{}\PYZhy{}maf 0.05 \PYZhy{}\PYZhy{}out Usnea.vcftools.vcf \PYZhy{}\PYZhy{}recode 2\PYZgt{}\PYZam{}1\PYZdq{}}\PY{p}{,} intern \PY{o}{=} \PY{n+nb+bp}{T}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item ''
+\item 'VCFtools - 0.1.15'
+\item '(C) Adam Auton and Anthony Marcketta 2009'
+\item ''
+\item 'Parameters as interpreted:'
+\item '\textbackslash{}t--vcf c90d6m4p3.vcf'
+\item '\textbackslash{}t--maf 0.05'
+\item '\textbackslash{}t--max-missing 0.5'
+\item '\textbackslash{}t--out Usnea.vcftools.vcf'
+\item '\textbackslash{}t--recode'
+\item ''
+\item 'Eighth Header entry should be INFO: INFO    '
+\item 'After filtering, kept 101 out of 101 Individuals'
+\item 'Outputting VCF file...'
+\item 'After filtering, kept 4146 out of a possible 18069 Sites'
+\item 'Run Time = 1.00 seconds'
+\end{enumerate*}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Required packages}
+        \PY{k+kn}{library}\PY{p}{(}vcfR\PY{p}{)}
+        \PY{k+kn}{library}\PY{p}{(}adegenet\PY{p}{)}
+        \PY{k+kn}{library}\PY{p}{(}hierfstat\PY{p}{)}
+        \PY{k+kn}{library}\PY{p}{(}qqman\PY{p}{)}
+        \PY{k+kn}{library}\PY{p}{(}mmod\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+   *****       ***   vcfR   ***       *****
+   This is vcfR 1.6.0 
+     browseVignettes('vcfR') \# Documentation
+     citation('vcfR') \# Citation
+   *****       *****      *****       *****
+
+Loading required package: ade4
+
+   /// adegenet 2.1.0 is loaded ////////////
+
+   > overview: '?adegenet'
+   > tutorials/doc/questions: 'adegenetWeb()' 
+   > bug reports/feature requests: adegenetIssues()
+
+
+
+Attaching package: ‘hierfstat’
+
+The following object is masked from ‘package:adegenet’:
+
+    read.fstat
+
+
+For example usage please run: vignette('qqman')
+
+Citation appreciated but not required:
+Turner, S.D. qqman: an R package for visualizing GWAS results using Q-Q and manhattan plots. biorXiv DOI: 10.1101/005165 (2014).
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Loading vcf file into R genind object  }
+        vcf \PY{o}{\PYZlt{}\PYZhy{}} read.vcfR\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Usnea.vcftools.vcf.recode.vcf\PYZdq{}}\PY{p}{)}
+        data.genlight \PY{o}{\PYZlt{}\PYZhy{}} vcfR2genlight\PY{p}{(}vcf\PY{p}{,} n.cores \PY{o}{=} \PY{l+m}{10}\PY{p}{)}
+        pop.file \PY{o}{\PYZlt{}\PYZhy{}} read.table\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Usnea.pop\PYZsq{}}\PY{p}{,} header\PY{o}{=}\PY{n+nb+bp}{F}\PY{p}{)}
+        pop\PY{p}{(}data.genlight\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} pop.file\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]}
+        data.genind \PY{o}{\PYZlt{}\PYZhy{}} df2genind\PY{p}{(}\PY{k+kp}{as.data.frame}\PY{p}{(}data.genlight\PY{p}{)}\PY{p}{,} pop\PY{o}{=}pop\PY{p}{(}data.genlight\PY{p}{)}\PY{p}{,} ploidy\PY{o}{=}\PY{l+m}{1}\PY{p}{,} ind.names\PY{o}{=}indNames\PY{p}{(}data.genlight\PY{p}{)}\PY{p}{,} loc.names\PY{o}{=}locNames\PY{p}{(}data.genlight\PY{p}{)}\PY{p}{)}
+        data.genind
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Scanning file to determine attributes.
+File attributes:
+  meta lines: 11
+  header line: 12
+  variant count: 4146
+  column count: 110
+Meta line 11 read in.
+All meta lines processed.
+gt matrix initialized.
+Character matrix gt created.
+  Character matrix gt rows: 4146
+  Character matrix gt cols: 110
+  skip: 0
+  nrows: 4146
+  row\_num: 0
+Processed variant: 4146
+All variants processed
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Warning message in vcfR2genlight(vcf, n.cores = 10):
+“Found 14 loci with more than two alleles.
+Objects of class genlight only support loci with two alleles.
+14 loci will be omitted from the genlight object.”
+    \end{Verbatim}
+
+    
+    \begin{verbatim}
+/// GENIND OBJECT /////////
+
+ // 101 individuals; 4,132 loci; 8,264 alleles; size: 5.1 Mb
+
+ // Basic content
+   @tab:  101 x 8264 matrix of allele counts
+   @loc.n.all: number of alleles per locus (range: 2-2)
+   @loc.fac: locus factor for the 8264 columns of @tab
+   @all.names: list of allele names for each locus
+   @ploidy: ploidy of each individual  (range: 1-1)
+   @type:  codom
+   @call: df2genind(X = as.data.frame(data.genlight), ind.names = indNames(data.genlight), 
+    loc.names = locNames(data.genlight), pop = pop(data.genlight), 
+    ploidy = 1)
+
+ // Optional content
+   @pop: population of each individual (group size range: 45-56)
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Pairwise Fst}
+        pwFst \PY{o}{\PYZlt{}\PYZhy{}} pairwise\PYZus{}Gst\PYZus{}Nei\PY{p}{(}data.genind\PY{p}{)}
+        pwFst
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”
+    \end{Verbatim}
+
+    
+    \begin{verbatim}
+          11
+21 0.6975744
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} obj\PYZus{}seplocus \PY{o}{\PYZlt{}\PYZhy{}} seploc\PY{p}{(}data.genind\PY{p}{)}\PY{p}{;}
+        obj\PYZus{}pwFst \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{lapply}\PY{p}{(}obj\PYZus{}seplocus\PY{p}{,} pairwise\PYZus{}Gst\PYZus{}Nei\PY{p}{)}
+        obj\PYZus{}pairwiseGstnum \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{sapply}\PY{p}{(}obj\PYZus{}pwFst\PY{p}{,} \PY{k+kp}{as.numeric}\PY{p}{)}\PY{p}{;}
+        obj\PYZus{}pairwiseGstnum\PY{p}{[}obj\PYZus{}pairwiseGstnum\PY{o}{\PYZlt{}}\PY{l+m}{0}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+m}{0}\PY{p}{;}
+        hist\PY{p}{(}obj\PYZus{}pairwiseGstnum\PY{p}{,} breaks\PY{o}{=}\PY{l+m}{100}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”Warning message in HsHt(g):
+“Need at least two population to calculate differentiation”
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} DAPC}
+         dapc1 \PY{o}{\PYZlt{}\PYZhy{}} dapc\PY{p}{(}data.genind\PY{p}{,} n.pca \PY{o}{=} \PY{l+m}{60}\PY{p}{,} n.da \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+         mycol \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{darkblue\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{darkgreen\PYZsq{}}\PY{p}{)}
+         scatter\PY{p}{(}dapc1\PY{p}{,} col \PY{o}{=} mycol\PY{p}{,} scree.pca \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{,} posi.pca \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{topright\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_5_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} compoplot\PY{p}{(}dapc1\PY{p}{,} posi\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{bottomright\PYZsq{}}\PY{p}{,} ncol \PY{o}{=} \PY{l+m}{1}\PY{p}{,} col \PY{o}{=} mycol\PY{p}{,} cleg \PY{o}{=} \PY{l+m}{0.8}\PY{p}{,} cex.names \PY{o}{=} \PY{l+m}{0.4}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} 11 = Usena antarctica}
+        \PY{c+c1}{\PYZsh{} 21 = Usena aurantiaco\PYZhy{}atra}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} save all in pdf}
+         pdf\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{usnea\PYZus{}popgen.pdf\PYZdq{}}\PY{p}{)}
+         hist\PY{p}{(}obj\PYZus{}pairwiseGstnum\PY{p}{,} breaks\PY{o}{=}\PY{l+m}{100}\PY{p}{)}\PY{p}{;}
+         scatter\PY{p}{(}dapc1\PY{p}{,} col \PY{o}{=} mycol\PY{p}{,} scree.pca \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{,} posi.pca \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{topright\PYZdq{}}\PY{p}{)}
+         compoplot\PY{p}{(}dapc1\PY{p}{,} posi\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{bottomright\PYZsq{}}\PY{p}{,} ncol \PY{o}{=} \PY{l+m}{1}\PY{p}{,} col \PY{o}{=} mycol\PY{p}{,} cleg \PY{o}{=} \PY{l+m}{0.8}\PY{p}{,} cex.names \PY{o}{=} \PY{l+m}{0.4}\PY{p}{)}
+         dev.off\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{png:} 2
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

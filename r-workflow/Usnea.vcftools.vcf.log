@@ -1,0 +1,16 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /home/fgrewe/Usnea/Usnea_RAD1234/6-pyrad7/outfiles/c90d6m4p3.vcf
+	--maf 0.05
+	--max-missing 0.5
+	--out Usnea.vcftools.vcf
+	--recode
+
+Eighth Header entry should be INFO: INFO    
+After filtering, kept 101 out of 101 Individuals
+Outputting VCF file...
+After filtering, kept 4146 out of a possible 18069 Sites
+Run Time = 1.00 seconds
