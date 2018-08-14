@@ -1,8 +1,13 @@
 #!/bin/bash
 
+#full dataset
 #reformatting pyrad output with fineRADstructure-tools
-~/Usnea/Usnea_RAD1234/6-pyrad7/outfiles$ python ~/git/fineRADstructure-tools/finerad_input.py --input c90d6m4p3.alleles --minsample 4
+python ~/git/fineRADstructure-tools/finerad_input.py --input c90d6m4p3.alleles --minsample 4
 #3804 loci for 101 samples written to c90d6m4p3.alleles.min4.finerad
+
+##reduced dataset with samples from Elephant Island and King George Island
+#python ~/git/fineRADstructure-tools/finerad_input.py --input c90d6m4p3.alleles --minsample 4
+##3652 loci for 80 samples written to c90d6m4p3.alleles.min4.finerad
 
 #fineRADstructure
 mkdir 12-fineRADstructure
@@ -30,3 +35,5 @@ Rscript ~/git/fineRADstructure/sampleLD.R -s 1 -n 500 c90d6m4p3.alleles.min4.fin
 ~/git/fineRADstructure/finestructure -m T -x 10000 c90d6m4p3.alleles.min4_chunks.out c90d6m4p3.alleles.min4_chunks.mcmc.xml c90d6m4p3.alleles.min4_chunks.mcmcTree.xml
 
 #FinestructureGUI for visualization
+
+
