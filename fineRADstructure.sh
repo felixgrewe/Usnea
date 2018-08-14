@@ -27,6 +27,6 @@ Rscript ~/git/fineRADstructure/sampleLD.R -s 1 -n 500 c90d6m4p3.alleles.min4.fin
 # Printing the final coancestry matrix to c90d6m4p3.alleles.min4_chunks.out
 # Analysis completed in: 31.1333 seconds (0.00818437 seconds per RAD locus)
 ~/git/fineRADstructure/finestructure -x 100000 -y 100000 -z 1000 c90d6m4p3.alleles.min4_chunks.out c90d6m4p3.alleles.min4_chunks.mcmc.xml
-~/Usnea/Usnea_RAD1234/12-fineRADstructure$ ~/git/fineRADstructure/finestructure -m T -x 10000 c90d6m4p3.alleles.min4_chunks.out c90d6m4p3.alleles.min4_chunks.mcmc.xml c90d6m4p3.alleles.min4_chunks.mcmcTree.xml
+~/git/fineRADstructure/finestructure -m T -x 10000 c90d6m4p3.alleles.min4_chunks.out c90d6m4p3.alleles.min4_chunks.mcmc.xml c90d6m4p3.alleles.min4_chunks.mcmcTree.xml
 
 #FinestructureGUI for visualization
