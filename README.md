@@ -3,7 +3,7 @@
 Scripts from publication:  
 Grewe F, Lagostina E, Wu H, Printzen C, Lumbsch HT (2018) Population genomic analyses of RAD
 sequences resolves the phylogenetic relationship of the lichen-forming fungal species Usnea antarctica and Usnea
-aurantiacoatra. MycoKeys. in print. https://doi.org/10.3897/mycokeys.@.29093
+aurantiacoatra. MycoKeys. in print.
 
 [RAxML_code](./RAxML.sh)  
 command for RAxML analysis  
